@@ -73,7 +73,8 @@ input PSLVERR_S[`NSLAVE:1]
 
 
 integer j;
- always @(*) begin
+ always @(*) 
+begin
         active_ready   = 1'b0;
         active_rdata   = {`DATA_WIDTH{1'b0}};
         active_slverr  = 1'b0;
