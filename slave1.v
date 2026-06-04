@@ -1,6 +1,6 @@
 `define DATA_WIDTH 8
 
-module slave(
+module slave1(
     input PCLK, PRESETN, PWRITE, PSEL, PENABLE,
     input [7:0] PADDR,
     input [`DATA_WIDTH-1:0] PWDATA,
@@ -8,7 +8,7 @@ module slave(
     output reg PREADY, PSLVERR
 );
 
-    reg [7:0] arr[0:127];
+    reg [`DATA_WIDTH-1:0] arr[0:127];
 
     always @(*) begin
         if (PRESETN && PENABLE && PSEL) begin
@@ -18,6 +18,7 @@ module slave(
                 if (~PWRITE) begin
                     PRDATA = 0;
                 end
+                else PRDATA=PRDATA;
             end else begin 
                 PSLVERR = 0;
                 PREADY  = 1;
