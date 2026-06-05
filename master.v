@@ -38,9 +38,6 @@ state <= 0;
           apb_read_data_out<=apb_read_data_out;
           if(transfer)
           begin
-            
-            
-
             PWRITE <= ~(READ_WRITE);
 PWDATA <= (READ_WRITE ? 0 : apb_write_data);
 PADDR <= (READ_WRITE ? apb_read_paddr[7:0] : apb_write_paddr[7:0]);
@@ -50,9 +47,9 @@ state <= 2'b1;
           end
           else
           begin
-            PWRITE <= 0;
-PWDATA <= 0;
-PADDR <= 0;
+            PWRITE <= ~(READ_WRITE);
+            PWDATA <= 0;
+            PADDR <= 0;
 PENABLE <= 0;
 PSEL <= 0;
 state <= 0;
